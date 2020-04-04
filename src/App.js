@@ -1,8 +1,10 @@
 import React from "react"
+import List from "./List"
 
 const App = () => (
     <>
-    Hello App
+        <h3>App</h3>
+        <List />
     </>
 )
 
