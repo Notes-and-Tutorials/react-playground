@@ -7,7 +7,13 @@ const data = [
 
 const ListItem = ({item}) => {
     return(
-        <p>{item.name}</p>
+        <p>
+            <input 
+                type="checkbox"
+                checked={item.completed}
+            />
+            {item.name}
+        </p>
     )
 }
 
