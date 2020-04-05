@@ -6,11 +6,19 @@ const data = [
 ]
 
 const ListItem = ({item}) => {
+
+    const [used, setUsed] = React.useState(item.completed);
+
+    const onCheckedChange = (event) => {
+        setUsed(event.target.checked)
+    }
+
     return(
         <p>
             <input 
                 type="checkbox"
-                checked={item.completed}
+                checked={used}
+                onChange={onCheckedChange}
             />
             {item.name}
         </p>
