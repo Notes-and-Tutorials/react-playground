@@ -3,7 +3,8 @@ import React from "react";
 const defaultState = {
     leftovers: [
         { 'id':1, 'name': 'pizza', 'completed': false, 'amount': 2},
-        { 'id':2, 'name': 'spagetti', 'completed': true, 'amount': 10},
+        { 'id':2, 'name': 'pork', 'completed': true, 'amount': 10},
+        { 'id':3, 'name': 'pasta', 'completed': true, 'amount': 2},
     ]
 };
 
@@ -14,7 +15,11 @@ const rootReducer = (state, action) => {
     switch (action.type) {
         case "finishLeftover":
             var leftovers = state.leftovers.map(x => 
-                x.id === action.id ? { ...x, completed: action.change} : x);
+                x.id === action.id ? 
+                { ...x, completed: action.change} 
+                : x);
+            console.log('finishLeftover:', action.change)
+
             return {...state, leftovers}
         default:
             throw new Error(`${action.type} not implemented`);
@@ -23,6 +28,8 @@ const rootReducer = (state, action) => {
 
 export const LeftoverProvider = ({children}) => {
     const [state, dispatch] = React.useReducer(rootReducer, defaultState);
+    console.log('provider state:', state)
+    console.log('provider dispatched')
 
     return (
         <Context.Provider value={state}>
