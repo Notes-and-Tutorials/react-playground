@@ -5,9 +5,9 @@ const data = [
     { 'name': 'spagetti', 'completed': true, 'amount': 10},
 ]
 
-const ListItem = (props) => {
+const ListItem = ({item}) => {
 
-    const [used, setUsed] = React.useState(props.item.completed);
+    const [used, setUsed] = React.useState(item.completed);
 
     const onCheckedChange = (event) => {
         setUsed(event.target.checked)
@@ -20,7 +20,7 @@ const ListItem = (props) => {
                 checked={used}
                 onChange={onCheckedChange}
             />
-            {props.item.name}
+            {item.name}
         </p>
     )
 }
