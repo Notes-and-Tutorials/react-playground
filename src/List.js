@@ -1,9 +1,5 @@
 import React from "react"
-
-const data = [
-    { 'name': 'pizza', 'completed': false, 'amount': 2},
-    { 'name': 'spagetti', 'completed': true, 'amount': 10},
-]
+import { useTodo } from "./Context";
 
 const ListItem = ({item}) => {
 
@@ -27,10 +23,11 @@ const ListItem = ({item}) => {
 
 
 const List = () => {
+    const [state] = useTodo()
     return (
         <>
         <h4>List</h4>
-        {data.map(item => (
+        {state.map(item => (
             <ListItem item={item}/>
         ))}
         </>
