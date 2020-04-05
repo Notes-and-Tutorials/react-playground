@@ -5,14 +5,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import { Provider } from "./Context";
+import { LeftoverProvider } from "./Context";
 
 const rootElement = document.getElementById("root");
 
 ReactDOM.render(
-    <Provider>
+    <LeftoverProvider>
         <App />
-    </Provider>
+    </LeftoverProvider>
     ,
     rootElement
 )

@@ -1,35 +1,42 @@
 import React from "react"
-import { useTodo } from "./Context";
+import { useLeftover } from "./Context";
 
-const ListItem = ({item}) => {
+const ListItem = ({leftover}) => {
+    // eslint-disable-next-line
+    const [state, dispatch] = useLeftover();
 
-    const [used, setUsed] = React.useState(item.completed);
-
-    const onCheckedChange = (event) => {
-        setUsed(event.target.checked)
-    }
+    const onCheckedChange = event => {
+        dispatch({
+            type: "finishLeftover",
+            id: leftover.id,
+            change: event.target.checked,
+        });
+    };
 
     return(
         <p>
             <input 
                 type="checkbox"
-                checked={used}
+                checked={leftover.completed}
                 onChange={onCheckedChange}
             />
-            {item.name}
+            {leftover.name}
         </p>
     )
 }
 
-
 const List = () => {
-    const [state] = useTodo()
+    
+    const [state] = useLeftover()
+
     return (
         <>
         <h4>List</h4>
-        {state.map(item => (
-            <ListItem item={item}/>
+
+        {state.leftovers.map(leftover => (
+            <ListItem leftover={leftover}/>
         ))}
+
         </>
     )
 }
