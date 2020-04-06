@@ -15,12 +15,11 @@ const rootReducer = (state, action) => {
     switch (action.type) {
         case "finishLeftover":
             var leftovers = state.leftovers.map(x => 
-                x.id === action.id ? 
-                { ...x, completed: action.change} 
-                : x);
-            console.log('finishLeftover:', action.change)
-
+                x.id === action.id ? { ...x, completed: action.change} : x);
             return {...state, leftovers}
+        case "deleteLeftover":
+            return {...state, leftovers: state.leftovers.filter(l => l.id !== action.id)}
+
         default:
             throw new Error(`${action.type} not implemented`);
     }
@@ -28,8 +27,6 @@ const rootReducer = (state, action) => {
 
 export const LeftoverProvider = ({children}) => {
     const [state, dispatch] = React.useReducer(rootReducer, defaultState);
-    console.log('provider state:', state)
-    console.log('provider dispatched')
 
     return (
         <Context.Provider value={state}>

@@ -4,7 +4,6 @@ import { useLeftover } from "./Context";
 const ListItem = ({leftover}) => {
     // eslint-disable-next-line
     const [state, dispatch] = useLeftover();
-    console.log('dispatched')
 
     const onCheckedChange = event => {
         dispatch({
@@ -12,8 +11,14 @@ const ListItem = ({leftover}) => {
             id: leftover.id,
             change: event.target.checked,
         });
-        console.log('change:', event.target.checked)
     };
+
+    const onDelete = () => {
+        dispatch({
+            type: "deleteLeftover",
+            id: leftover.id,
+        })
+    }
 
     return(
         <p>
@@ -23,6 +28,7 @@ const ListItem = ({leftover}) => {
                 onChange={onCheckedChange}
             />
             {leftover.name}
+            <button onClick={onDelete}>Delete</button>
         </p>
     )
 }
@@ -30,7 +36,6 @@ const ListItem = ({leftover}) => {
 const List = () => {
     
     const [state] = useLeftover()
-    console.log('list, state:', state)
 
     return (
         <>
