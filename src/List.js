@@ -1,5 +1,6 @@
 import React from "react"
 import { useLeftover } from "./Context";
+import Create from "./Create";
 
 const ListItem = ({leftover}) => {
     // eslint-disable-next-line
@@ -20,6 +21,7 @@ const ListItem = ({leftover}) => {
         })
     }
 
+
     return(
         <p>
             <input 
@@ -39,6 +41,7 @@ const List = () => {
 
     return (
         <>
+        <Create />
         <h4>List</h4>
 
         {state.leftovers.map(leftover => (

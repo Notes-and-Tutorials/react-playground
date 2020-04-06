@@ -18,7 +18,9 @@ const rootReducer = (state, action) => {
                 x.id === action.id ? { ...x, completed: action.change} : x);
             return {...state, leftovers}
         case "deleteLeftover":
-            return {...state, leftovers: state.leftovers.filter(l => l.id !== action.id)}
+            return {...state, leftovers: state.leftovers.filter(l => l.id !== action.id)};
+        case "addLeftover":
+            return {...state, leftovers: [action.leftover, ...state.leftovers]};
 
         default:
             throw new Error(`${action.type} not implemented`);
