@@ -8,17 +8,23 @@ const defaultState = {
     ]
 };
 
+// I don't understand why these are both create ??
 const Context = React.createContext();
 const UpdateContext = React.createContext();
 
+// A reducer is a function that determines changes to an application’s state. 
+// It uses the action it receives to determine this change.
 const rootReducer = (state, action) => {
     switch (action.type) {
         case "finishLeftover":
-            var leftovers = state.leftovers.map(x => 
-                x.id === action.id ? { ...x, completed: action.change} : x);
+            // if id matched what you clicked, that take that action.change (T/F)
+            // if id doesn't match, keep it
+            var leftovers = state.leftovers.map(obj => 
+                obj.id === action.id ? { ...obj, completed: action.change} : obj);
             return {...state, leftovers}
         case "deleteLeftover":
-            return {...state, leftovers: state.leftovers.filter(l => l.id !== action.id)};
+            // keep everything that you didn't hit delete on
+            return {...state, leftovers: state.leftovers.filter(obj => obj.id !== action.id)};
         case "addLeftover":
             return {...state, leftovers: [action.leftover, ...state.leftovers]};
 
@@ -27,6 +33,9 @@ const rootReducer = (state, action) => {
     }
 }
 
+// This goes to the index.js file
+// Need to wrap the <App /> in provider
+// more ??
 export const LeftoverProvider = ({children}) => {
     const [state, dispatch] = React.useReducer(rootReducer, defaultState);
 
@@ -40,10 +49,8 @@ export const LeftoverProvider = ({children}) => {
 
 }
 
-// Consumer (via dispatch fuction)
+// Consumer ??
 export const useLeftover = () => [
     React.useContext(Context),
-    React.useContext(UpdateContext)
+    React.useContext(UpdateContext) 
 ]
-
-// TODO look at Buildlabs app

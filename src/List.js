@@ -8,9 +8,11 @@ const ListItem = ({leftover}) => {
 
     const onCheckedChange = event => {
         dispatch({
+            // these are arbitrary names
+            // they just must match the Context.js > rootReducer (vice versa)
             type: "finishLeftover",
             id: leftover.id,
-            change: event.target.checked,
+            change: event.target.checked, // returns T/F
         });
     };
 
