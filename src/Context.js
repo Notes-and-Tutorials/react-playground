@@ -25,6 +25,7 @@ const rootReducer = (state, action) => {
         case "deleteLeftover":
             // keep everything that you didn't hit delete on
             return {...state, leftovers: state.leftovers.filter(obj => obj.id !== action.id)};
+        // this component on a different page
         case "addLeftover":
             return {...state, leftovers: [action.leftover, ...state.leftovers]};
 
