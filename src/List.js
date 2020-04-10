@@ -1,54 +1,23 @@
-import React from "react"
-import { useLeftover } from "./Context";
-import Create from "./Create";
+import React from "react";
 
-const ListItem = ({leftover}) => {
-    // eslint-disable-next-line
-    const [state, dispatch] = useLeftover();
+const items = [
+    { 'id': 11, 'name': 'tomatoe sauce', 'size': '12 oz can', 'amount': 5 },
+    { 'id': 12, 'name': 'spagetti', 'size': '16 oz box', 'amount': 2 },
+];
 
-    const onCheckedChange = event => {
-        dispatch({
-            type: "finishLeftover",
-            id: leftover.id,
-            change: event.target.checked,
-        });
-    };
-
-    const onDelete = () => {
-        dispatch({
-            type: "deleteLeftover",
-            id: leftover.id,
-        })
-    }
-
-
-    return(
-        <p>
-            <input 
-                type="checkbox"
-                checked={leftover.completed}
-                onChange={onCheckedChange}
-            />
-            {leftover.name}
-            <button onClick={onDelete}>Delete</button>
-        </p>
-    )
-}
+const ListItem = ({item}) => (
+    <li>{item.name}</li>
+);
 
 const List = () => {
-    
-    const [state] = useLeftover()
 
     return (
-        <>
-        <Create />
-        <h4>List</h4>
-
-        {state.leftovers.map(leftover => (
-            <ListItem leftover={leftover}/>
-        ))}
-
-        </>
+        <ul>
+            {items.map(i => (
+                <ListItem item={i} />
+            ))}
+        </ul>
     )
-}
+};
+
 export default List;
