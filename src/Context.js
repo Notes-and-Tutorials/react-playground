@@ -8,9 +8,9 @@ const defaultState = {
     ]
 };
 
-// I don't understand why these are both create ??
-const Context = React.createContext();
-const UpdateContext = React.createContext();
+// Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+const Context = React.createContext(); // read
+const UpdateContext = React.createContext(); // write 
 
 // A reducer is a function that determines changes to an application’s state. 
 // It uses the action it receives to determine this change.
@@ -34,9 +34,7 @@ const rootReducer = (state, action) => {
     }
 }
 
-// This goes to the index.js file
-// Need to wrap the <App /> in provider
-// more ??
+// Wrapped the <App /> in this provider so that all children have access to the state
 export const LeftoverProvider = ({children}) => {
     const [state, dispatch] = React.useReducer(rootReducer, defaultState);
 
@@ -50,8 +48,13 @@ export const LeftoverProvider = ({children}) => {
 
 }
 
-// Consumer ??
+// Order matters or calling in other components
+// best practice: first is state, second is dispatch
 export const useLeftover = () => [
     React.useContext(Context),
     React.useContext(UpdateContext) 
 ]
+// Long syntax for returning an array from an arrow function
+// export const useLeftover = () => {
+//     return [ React.useContext(Context), React.useContext(UpdateContext) ]
+// }
