@@ -8,6 +8,11 @@ const defaultState = {
     ]
 };
 
+// TODO: use this
+fetch('http://localhost:1337/leftovers/')
+    .then(res => res.json())
+    .then(json => console.log(json));
+
 // Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 const Context = React.createContext(); // read
 const UpdateContext = React.createContext(); // write 
