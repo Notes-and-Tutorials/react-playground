@@ -14,7 +14,7 @@ const Create = () => {
             leftover: {
                 id: 100,
                 name: leftover,
-                completed: false,
+                eaten: false,
             }
         })
         setLeftover("");

@@ -2,9 +2,9 @@ import React from "react";
 
 const defaultState = {
     leftovers: [
-        { 'id':1, 'name': 'pizza', 'completed': false, 'amount': 2},
-        { 'id':2, 'name': 'pork', 'completed': true, 'amount': 10},
-        { 'id':3, 'name': 'pasta', 'completed': true, 'amount': 2},
+        { 'id':1, 'name': 'pizza', 'eaten': false, 'amount': 2},
+        { 'id':2, 'name': 'pork', 'eaten': true, 'amount': 10},
+        { 'id':3, 'name': 'pasta', 'eaten': true, 'amount': 2},
     ]
 };
 
@@ -20,7 +20,7 @@ const rootReducer = (state, action) => {
             // if id matched what you clicked, that take that action.change (T/F)
             // if id doesn't match, keep it
             var leftovers = state.leftovers.map(obj => 
-                obj.id === action.id ? { ...obj, completed: action.change} : obj);
+                obj.id === action.id ? { ...obj, eaten: action.change} : obj);
             return {...state, leftovers}
         case "deleteLeftover":
             // keep everything that you didn't hit delete on
