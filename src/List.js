@@ -4,7 +4,6 @@ import Create from "./Create";
 
 const ListItem = ({leftover}) => {
     // eslint-disable-next-line
-
     const [state, dispatch] = useLeftover();
 
     const onCheckedChange = event => {
